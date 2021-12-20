@@ -1,9 +1,11 @@
 <template>
-  <div id="wrapper">
+  <div id="container">
 
-    <nav id="navtext">
+    <nav class="hero is-warning">
+      <div class="hero-body" id="navtext">
       <router-link to="/" class="navstyle">Home</router-link>
       <router-link to="/api" class="navstyle">API</router-link>
+      </div>
     </nav>
 
     <section class="section">
@@ -17,3 +19,4 @@
 @import '../node_modules/bulma';
 @import '/styles/global';
 </style>
+
