@@ -6,8 +6,10 @@
   <button @click="addItem" class="button is-danger is-large is-rounded additem">Add Item</button>
   </div>
   <ul v-if="shoppingList">
-    <li v-for="(item, i) in shoppingList" :key="i" class="item">{{ i+1 }} - {{ item }}</li>
+    <li v-for="(item, i) in shoppingList" :key="i" class="item is-justify-content-space-between"><span class="is-pulled-left">{{ i+1 }} - {{ item }} </span>
+    <button class="button is-danger is-small is-rounded deleteItem is-pulled-right" @click="deleteItem(i)">Remove</button></li>
   </ul>
+  <button class="button is-danger is-large is-rounded deleteAll" @click="deleteItem()">Delete All</button>
 <h1> Welcome to the main page</h1>
 <p>The purpose of this page is to show how Vue can connect to an external API, and use it to consume data. The API it's using is called 
   SWAPI and is built off of data from the Star Wars universe. It uses the axios package to connect to the API and then loops through the data and displays 
@@ -35,6 +37,11 @@ export default {
       this.shoppingList.push(this.input)
       this.input=""
       this.$refs.input.focus()
+    },
+    deleteItem(i) {
+      this.shoppingList = i+1
+      ? this.shoppingList.filter((item, x) => x !== i)
+      :[]
     }
   },
   mounted() {
