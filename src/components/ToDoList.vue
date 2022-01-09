@@ -2,14 +2,14 @@
   <div>
     <h1>WebDev ToDo List</h1>
 <div class="user-input">
-  <input placeholder="Press enter to add a new todo" v-model="input" @keyup.enter="addItem" ref="input"/>
-  <button @click="addItem" class="button is-danger is-large is-rounded addItem">Add Item</button>
+  <input placeholder="Press enter to add a new todo" v-model="input" v-on:keyup.enter="addItem" ref="input"/>
+  <button v-on:click="addItem" class="button is-danger is-large is-rounded addItem">Add Item</button>
   </div>
   <ul v-if="shoppingList">
-    <li v-for="(item, i) in shoppingList" :key="i" class="item is-justify-content-space-between"><span class="is-pulled-left">{{ i+1 }} - {{ item }} </span>
-    <button class="button is-danger is-small is-rounded deleteItem is-pulled-right" @click="deleteItem(i)">Remove</button></li>
+    <li v-for="(item, i) in shoppingList" v-bind:key="i" class="item is-justify-content-space-between"><span class="is-pulled-left">{{ i+1 }} - {{ item }} </span>
+    <button class="button is-danger is-small is-rounded deleteItem is-pulled-right" v-on:click="deleteItem(i)">Remove</button></li>
   </ul>
-  <button class="button is-danger is-large is-rounded deleteAll" @click="deleteItem()">Delete All</button>
+  <button class="button is-danger is-large is-rounded deleteAll" v-on:click="deleteItem()">Delete All</button>
 </div>
 </template>
 

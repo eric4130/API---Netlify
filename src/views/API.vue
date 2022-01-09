@@ -1,5 +1,10 @@
 <template>
     <div id="api-page">
+      <h1> Welcome to the API page</h1>
+<p>The purpose of this page is to show how Vue can connect to an external API, and use it to consume data. The API it's using is called 
+  SWAPI and is built off of data from the Star Wars universe. It uses the axios package to connect to the API and then loops through the data and displays 
+  specfic attributes in a list fashion. Bulma, a CSS library, combined with SCSS is used to style the grid and make it responsive.
+</p>
       <div class="columns is-tablet">
              <div class="column">
                  <div class="box">
@@ -47,7 +52,7 @@
                 </div>
           </div>
       </div>
-     </div>
+</div>
 </template>
     
 <script>
@@ -128,3 +133,27 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+h1 {
+font-family: 'Caesar Dressing', cursive;
+  font-size:2rem;
+  text-decoration: underline;
+}
+
+p {
+  font-family: 'Revalia', cursive;
+  font-size:2rem;
+  margin-top:20px;
+   margin-bottom:10px;
+}
+
+.box {
+  background-color: #00000000;
+  color:white;
+  margin:10px 0px 0px;
+  padding:0px 0px 10px;
+}
+
+</style>

@@ -1,7 +1,7 @@
 <template>
   <div id="container">
 
-    <nav class="hero is-warning">
+    <nav class="hero">
       <div class="hero-body" id="navtext">
       <router-link to="/" class="navstyle">Home</router-link>
       <router-link to="/api" class="navstyle">API</router-link>

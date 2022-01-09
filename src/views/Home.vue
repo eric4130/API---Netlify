@@ -1,13 +1,28 @@
 <template>
   <div id="home-page">
-  <ToDoList />
-<h1> Welcome to the main page</h1>
-<p>The purpose of this page is to show how Vue can connect to an external API, and use it to consume data. The API it's using is called 
-  SWAPI and is built off of data from the Star Wars universe. It uses the axios package to connect to the API and then loops through the data and displays 
-  specfic attributes in a list fashion.
+<h1> Welcome to the Home page</h1>
+<p v-bind:title="title">The purpose of this page is to show how Vue can make Javascript events easier to understand and read.  The Todo List (imported as a child component) utilizes some basic 
+  Vue directives and methods to accomplish dynamic list management. The input shows an example of v-model 2-way data binding. The 2 Big Buttons are used to show some basic DOM manipulation. The first, in vanilla JS,
+  executes a function based on the 'click' event. The second button accomplishes the same goal, but with the help of Vue directives and methods.
 </p>
+ <ToDoList />
+<h2> Type something in the input below </h2>
+<p id="input">{{ reactiveinput }}</p>
+<input v-model="reactiveinput">
+
+<!-- vanilla JS event listener -->
 <p id="message"></p>
-<button class="button is-link is-large is-rounded bigbutton event">Click Here</button>
+<button class="button is-link is-large is-rounded bigbutton js-event">Click Here</button>
+
+<!-- Vue event listener -->
+  <p>{{ message2 }}</p>
+  <button class="button is-link is-large is-rounded bigbutton vue-event" v-on:click = "displayMessage">Click Here</button>
+  
+<!-- Methods -->
+ <p>{{ message3 }}</p>
+  <button class="button is-link is-large is-rounded bigbutton" v-on:click = "reverseMessage">Click Here</button>
+  <p>{{ reversedMessage }}</p>
+
 
 </div>
 </template>
@@ -20,31 +35,88 @@ export default {
   components: {
     ToDoList
   },
+  data() {
+    return {
+      reactiveinput: "",
+      title: "Hello There!\n" + new Date().toLocaleString(),
+      message2:'',
+      message3: 'This line shows how methods work. After clicking the button, JS methods are used to slice, reverse and join.'
+    }
+  },
+  /* in mounted() is where you can write vanilla JS */
   mounted() {
     document.title = "Home  || API-Netlify"
-
+/* vanilla js event */
     function newText() {
-         document.querySelector("#message").textContent =  "See our ToDo List above to brainstorm your development process !!";
-    }
+        
+         let message1 = document.querySelector("#message").textContent;
+      if (message1 == '') {
+         document.querySelector("#message").textContent =  "This is a traditional Javascript event listener";
+        document.querySelector('.js-event').style.backgroundColor='red';
+        document.querySelector(".js-event").textContent = "Vanilla JS";
+      } else {
+        document.querySelector("#message").textContent = "";
+        document.querySelector('.js-event').style.backgroundColor='';
+        document.querySelector(".js-event").textContent = "Click Here";
+          }
+      }
 
-    document.querySelector('.event').addEventListener('click', newText);
+    document.querySelector('.js-event').addEventListener('click', newText);
 
   },
+
+  methods: {
+/* vue.js events */
+    displayMessage() {
+      if (this.message2 == '') {
+      this.message2 = "This is the way Vue does event listeners!";
+      document.querySelector('.vue-event').style.backgroundColor='red';
+      document.querySelector(".vue-event").textContent = "Vue.JS";
+      } else {
+        this.message2 = '';
+        document.querySelector('.vue-event').style.backgroundColor='';
+       document.querySelector(".vue-event").textContent = "Click here";
+      }
+     
+    },
+    reverseMessage() {
+      this.message3 = this.message3.split('').reverse().join('');
+    }
+  },
+  computed: {
+    reversedMessage: function() {
+      return this.message3.split('').reverse().join('');
+    }
+  }
 }
 
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 h1 {
-  font-size:3rem;
+  font-family: 'Caesar Dressing', cursive;
+  font-size:2rem;
   text-decoration: underline;
 }
 
 p {
+  font-family: 'Revalia', cursive;
   font-size:2rem;
   margin-top:20px;
+}
+
+p#input {
+  font-size:3rem;
+}
+
+input {
+  margin-top:20px;
+}
+
+h2 {
+  padding-top:20px;
 }
 
 </style>
