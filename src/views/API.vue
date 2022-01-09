@@ -85,51 +85,25 @@ export default {
     }
   },
   mounted() {
+    this.getSWAPI()
     document.title = "Star Wars API  || API-Netlify"
   },
-  beforeCreate() {
-    axios.get('films')
-    .then(res => {
-      this.films = res.data.results;
+  methods: {
+    async getSWAPI() {
+    await axios
+    .get('/films/', '/people/', '/planets/', '/species/','/starships/','/vehicles/')
+    .then(response => {
+      this.films = response.data;
+      this.people = response.data;
+      this.planets = response.data;
+      this.species = response.data;
+      this.starships = response.data;
+      this.vehicles = response.data;
     })
     .catch(error => {
       console.error(error);
     })
-     axios.get('people')
-    .then(res => {
-      this.people = res.data.results;
-    })
-    .catch(error => {
-      console.error(error);
-    })
-     axios.get('planets')
-    .then(res => {
-      this.planets = res.data.results;
-    })
-    .catch(error => {
-      console.error(error);
-    })
-     axios.get('species')
-    .then(res => {
-      this.species = res.data.results;
-    })
-    .catch(error => {
-      console.error(error);
-    })
-     axios.get('starships')
-    .then(res => {
-      this.starships = res.data.results;
-    })
-    .catch(error => {
-      console.error(error);
-    })
-     axios.get('vehicles')
-    .then(res => {
-      this.vehicles = res.data.results;
-    })
-    .catch(error => {
-      console.error(error);
-    })
+    }
   }
 }
 </script>

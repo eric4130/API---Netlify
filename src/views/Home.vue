@@ -1,7 +1,7 @@
 <template>
   <div id="home-page">
 <h1> Welcome to the Home page</h1>
-<p v-bind:title="title">The purpose of this page is to show how Vue can make Javascript events easier to understand and read.  The Todo List (imported as a child component) utilizes some basic 
+<p>The purpose of this page is to show how Vue can make Javascript events easier to understand and read.  The Todo List (imported as a child component) utilizes some basic 
   Vue directives and methods to accomplish dynamic list management. The input shows an example of v-model 2-way data binding. The 2 Big Buttons are used to show some basic DOM manipulation. The first, in vanilla JS,
   executes a function based on the 'click' event. The second button accomplishes the same goal, but with the help of Vue directives and methods.
 </p>
@@ -38,7 +38,6 @@ export default {
   data() {
     return {
       reactiveinput: "",
-      title: "Hello There!\n" + new Date().toLocaleString(),
       message2:'',
       message3: 'This line shows how methods work. After clicking the button, JS methods are used to slice, reverse and join.'
     }
